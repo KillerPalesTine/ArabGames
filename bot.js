@@ -477,7 +477,7 @@ client.on('message', message => {
 %member  //معرفة حالة الاعضاء
 %inv  //لاضافة البوت
 %shop //يجب تكون رتبة Seller وروم shop
-m%help //للمساعدة في الاغاني
+
 **
 `);
 
@@ -486,7 +486,7 @@ m%help //للمساعدة في الاغاني
 
 client.on("message", msg => {//Alpha Codes 
     var Alpha = '%';//البرفكس
-    if(msg.content.startsWith(Alpha + "invite")){//Alpha Codes 
+    if(msg.content.startsWith(Alpha + "inv")){//Alpha Codes 
         let e = new Discord.RichEmbed()//Alpha Codes 
         .setTitle("**اضافه البوت لسيرفرك**")//Alpha Codes 
        .setDescription(`**📬 | اذا تريد البوت يرسلك الرابط بخاصك
