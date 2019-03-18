@@ -475,13 +475,109 @@ client.on('message', message => {
 %bot  //معلومات عن البوت
 %sugg //لارسال اقتراح يلزم روم suggestions
 %member  //معرفة حالة الاعضاء
-قريباا
-
+%inv  //لاضافة البوت
+%shop //يجب تكون رتبة Seller وروم shop
+m%help //للمساعدة في الاغاني
 **
 `);
 
     }
 });
+
+client.on("message", msg => {//Alpha Codes 
+    var Alpha = '%';//البرفكس
+    if(msg.content.startsWith(Alpha + "invite")){//Alpha Codes 
+        let e = new Discord.RichEmbed()//Alpha Codes 
+        .setTitle("**اضافه البوت لسيرفرك**")//Alpha Codes 
+       .setDescription(`**📬 | اذا تريد البوت يرسلك الرابط بخاصك
+       📇 | اذا تريد البوت يرسلك الرابط هنا بالشات**`)
+        msg.channel.send(e).then(b => {
+            b.react('📇')
+            .then(() => b.react('📬'))
+            .then(() =>b.react('📇'))
+            let reaction1Filter = (reaction, user) => reaction.emoji.name === '📇' && user.id === msg.author.id;
+let reaction2Filter = (reaction, user) => reaction.emoji.name === '📬' && user.id === msg.author.id;
+
+let reaction1 = b.createReactionCollector(reaction1Filter, { time: 12000 });
+let reaction2 = b.createReactionCollector(reaction2Filter, { time: 12000 });
+reaction1.on("collect", r => {
+msg.reply(`https://discordapp.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=bot`)
+b.delete(2000)
+})
+reaction2.on("collect", r => {
+    msg.author.send(`${msg.author} https://discordapp.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=bot`)
+    b.delete(2000)
+    msg.reply("**تم ارسال الرابط في خاصك 📬**").then(d => {
+        d.delete(2000)
+    })
+    })
+        })
+    }
+});
+
+
+client.on("message",async message => {
+if(message.content === '%shop'){//الامر
+let staff = message.guild.member(message.author).roles.find('Seller' ,"اسم رتبت البيع");
+      if(!staff) return message.reply(`**Only Sellers | :x:**`)
+var shopc = message.guild.channels.find("shop","اسم الروم")
+  if(!shopc) return message.reply("لا اجد الروم المخصص للبيع")
+    let shop = '';
+      let fillter = m => m.author.id === message.author.id
+      
+     
+
+      await message.channel.send("اكتب الاشياء الذي سوف تبيعها").then(e => {
+           message.channel.awaitMessages(fillter, { time: 60000, max: 1                                    
+})
+     .then(co => {
+       shop = co.first().content;
+        co.first().delete();
+     
+let desc = '';
+        
+e.edit("اكتب الدفع عند مين؟").then(e => {
+  message.channel.awaitMessages(fillter, { time: 60000, max: 1 })
+
+     .then(co => {
+       desc = co.first().content;
+        co.first().delete();
+e.edit("Done").then(e => {
+  shopc.send(`@everyone <$> @here
+${message.guild.name}:tm: Shop :arrow_down:
+======================
+${shop}
+=================
+**الدفع عند:** **${desc}**
+
+**تم الارسال بواسطة:** ${message.author}
+@everyone </> @here`)
+  })
+})
+  })
+})
+  })
+           
+      
+  
+     
+  
+      
+           
+}
+});
+
+
+const bot = require('discord.js-musicbot-addon');//Elmusaui_GK + Narox
+bot.start(client, {//Elmusaui_GK + Narox
+ youtubeKey: "AIzaSyAdORXg7UZUo7sePv97JyoDqtQVi3Ll0b8", //Elmusaui_GK + Narox
+ musichelp : "m%help", //Elmusaui_GK + Narox
+ botPrefix : "m%", //Elmusaui_GK + Narox
+ anyoneCanSkip: true, // اي احد يقدر يسوي سكيب : true // ما حد يقدر يسوي سكيب الا الي عنده امر السكيب : false 
+ bigPicture : true, //Elmusaui_GK + Narox
+ anyoneCanAdjust : false, //حد يقدر يغير الصوت اذا خليته true // ما حد يقدر يغير الصوت الا الي عندهم ادمينيستراتور : false 
+});//Elmusaui_GK + Narox
+
  
  
  
