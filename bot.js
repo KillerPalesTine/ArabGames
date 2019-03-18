@@ -228,7 +228,7 @@ var setReactionData = function(channel, message, reaction, identify) {
  
 client.on('message', message => {
               if (!message.channel.guild) return;
-      if(message.content =='*member')
+      if(message.content =='%member')
       var IzRo = new Discord.RichEmbed()
       .setThumbnail(message.author.avatarURL)
       .setFooter(message.author.username, message.author.avatarURL)
@@ -429,78 +429,63 @@ client.on('message', message => { //RayGamerMC BotInfo Code
 }
 }); //كود معلومات البوت مطور
 
-const credits = JSON.parse(fs.readFileSync("./creditsCode.json", "utf8"));
-const coolDown = new Set();
- 
-client.on('message',async message => {//لاتنسى سوي ملف إسمو creditsCode.json
-   
-if(message.author.bot) return;//وضع فيه {}
-if(!credits[message.author.id]) credits[message.author.id] = {
-    credits: 5000000
-};
- 
-let userData = credits[message.author.id];
-let m = userData.credits;
- 
-fs.writeFile("./creditsCode.json", JSON.stringify(credits), (err) => {
-    if (err) console.error(err);
-  });
-  credits[message.author.id] = {
-      credits: m + 500,
-  }
- 
-    if(message.content.startsWith(prefix + "credit" || prefix + "credits")) {
-message.channel.send(`**${message.author.username}, your :credit_card: balance is \`\`${userData.credits}\`\`.**`);
-}
+
+
+
+const Discord = require('discord.js');
+const client = new Discord.Client();
+const prefix = "!"; //NotMiro //BadGuY
+client.on('ready', () => {
+  console.log(`Logged in as ${client.user.tag}!`);
 });
- 
-client.on('message', async message => {
-    let amount = 500;//هنا شوف كم تبي كريديت لما تسوي دايلي
-    if(message.content.startsWith(prefix + "daily")) {
-    if(message.author.bot) return;
-    if(coolDown.has(message.author.id)) return message.channel.send(`**:stopwatch: | ${message.author.username}, your daily :yen: credits refreshes in \`\`1 Day\`\`.**`);//هنا مدة تحديث الكريديت
-   
-    let userData = credits[message.author.id];
-    let m = userData.credits + amount;
-    credits[message.author.id] = {
-    credits: m
-    };
- 
-    fs.writeFile("./creditsCode.json", JSON.stringify(userData.credits + amount), (err) => {
-    if (err) console.error(err);
+
+client.on('message', message => {
+  let command = message.content.split(" ")[0].slice(prefix.length);
+  let args = message.content.split(" ").slice(1);
+
+  if(!message.content.toLowerCase().startsWith(prefix)) return;
+  if(command == "sugg") {
+    if(!args.join(" ")) return message.channel.send(`**يرجي كتابة الاقتراح **`);
+    let channel = message.guild.channels.find(c => c.name == "suggestions");
+    let embed = new Discord.RichEmbed()
+    .setAuthor(message.author.username, message.author.displayAvatarURL)
+    .setTitle(``)
+    .setFooter(`Select a reaction below to vote on suggestion`)
+    .setDescription(args.join(" "));
+    channel.send(embed).then(msg => {
+      msg.react("✅").then(() => msg.react("❌"));
+      message.delete()
+      message.channel.send(`**يرجي كتابة اقتراح لكي يتم ارساله الي روم الاقتراحات ❎ **`);
     });
-   
-    message.channel.send(`**:atm: | ${message.author.username}, you received your :yen: ${amount} credits!**`).then(() => {
-        coolDown.add(message.author.id);
-    });
-   
-    setTimeout(() => {
-       coolDown.remove(message.author.id);
-    },86400000);
+  }
+});
+
+
+client.on('message', message => {
+    if (message.author.bot) return;
+     if (message.content ==="#help") {
+         message.channel.send('**تم ارسالك في الخاص**');
+            
+    
+         
+
+
+ message.author.sendMessage(`
+ **
+%bc  //لارسال برودكاست للاعضاء
+%new  //لعمل تيكيت يلزم رتبة Support Team
+%clear  //مسح الشات
+%mutechannel  //تقفيل الشات
+%unmutechannel  //فتح الشات
+%bot  //معلومات عن البوت
+%sugg //لارسال اقتراح يلزم روم suggestions
+%member  //معرفة حالة الاعضاء
+
+**
+`);
+
     }
 });
- 
-client.on('message', message => {
-     if(!message.channel.guild) return;
-                if(message.content.startsWith(prefix + 'allbots')) {
- 
-   
-    if (message.author.bot) return;
-    let i = 1;
-        const botssize = message.guild.members.filter(m=>m.user.bot).map(m=>`${i++} - <@${m.id}>`);
-          const embed = new Discord.RichEmbed()
-          .setAuthor(message.author.tag, message.author.avatarURL)
-          .setDescription(`**Found ${message.guild.members.filter(m=>m.user.bot).size} bots in this Server**
-${botssize.join('\n')}`)
-.setFooter(client.user.username, client.user.avatarURL)
-.setTimestamp();
-message.channel.send(embed)
- 
-}
- 
- 
-});//LioNDz مرة من هنا
-
  
  
  
