@@ -422,7 +422,7 @@ client.on('message', message => { //RayGamerMC BotInfo Code
             .addField('``Users``' ,`[ ${client.users.size} ]` , true) //عدد مستخدمي البوت
             .addField('``My Name``' , `[ ${client.user.tag} ]` , true) //اسم البوت
             .addField('``My ID``' , `[ ${client.user.id} ]` , true) // ايدي البوت
-                  .addField('``My Prefix``' , `[ البريفكس ]` , true) //بريفكس البوت
+                  .addField('``My Prefix``' , `[ % ]` , true) //بريفكس البوت
                   .addField('``My Language``' , `[ Java Script ]` , true) //لغة البوت
                   .setFooter('By | KillerPalesTine') //اسم الي صنع البوت
     })
