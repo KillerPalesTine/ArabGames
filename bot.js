@@ -395,6 +395,40 @@ client.on("guildMemberAdd", async member => {
   }
 });
 
+
+client.on("message", message => {
+  if (message.channel.type === "dm") {
+ 
+      message.channel.startTyping();
+      setTimeout(() => {
+        message.channel.stopTyping();
+      }, Math.random() * (1 - 3) + 1 * 1000);
+   
+  }
+});
+
+
+client.on('message', message => { //RayGamerMC BotInfo Code
+    if (message.content.startsWith("%bot")) { // "+bot" هو البريفكس ب إمكانك تغييره في أي وقت في +
+    message.channel.send({ //Snow Codes RayGamerMC
+        embed: new Discord.RichEmbed()
+            .setAuthor(client.user.username,client.user.avatarURL)
+            .setThumbnail(client.user.avatarURL)
+            .setColor('RANDOM') //Snow Codes
+            .setTitle('``Informations Of [ArabGames]`` ')
+            .addField('``My Ping``' , [`${Date.now() - message.createdTimestamp}` + 'MS'], true) //البنق
+            .addField('``RAM Usage``', `[${(process.memoryUsage().rss / 1048576).toFixed()}MB]`, true) //الرام المستخدمة
+            .addField('``servers``', [client.guilds.size], true) //عدد السيرفرات الي البوت موجود فيها
+            .addField('``Users``' ,`[ ${client.users.size} ]` , true) //عدد مستخدمي البوت
+            .addField('``My Name``' , `[ ${client.user.tag} ]` , true) //اسم البوت
+            .addField('``My ID``' , `[ ${client.user.id} ]` , true) // ايدي البوت
+                  .addField('``My Prefix``' , `[ البريفكس ]` , true) //بريفكس البوت
+                  .addField('``My Language``' , `[ Java Script ]` , true) //لغة البوت
+                  .setFooter('By | KillerPalesTine') //اسم الي صنع البوت
+    })
+}
+}); //كود معلومات البوت مطور
+
  
  
  
