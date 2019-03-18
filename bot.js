@@ -477,7 +477,7 @@ client.on('message', message => {
 %member  //معرفة حالة الاعضاء
 %inv  //لاضافة البوت
 %shop //يجب تكون رتبة Seller وروم shop
-
+%myinvites  //لمعرفة كم عضو جبت
 **
 `);
 
@@ -569,7 +569,7 @@ ${shop}
 
 
 client.on('message', message => {
-   if(message.content.startsWith("%invites")) {
+   if(message.content.startsWith("%myinvites")) {
     message.guild.fetchInvites().then(invs => {
       let user = message.mentions.users.first() || message.author
       let personalInvites = invs.filter(i => i.inviter.id === user.id);
