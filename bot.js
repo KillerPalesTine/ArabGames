@@ -8,7 +8,7 @@ client.on('ready', () => {
    console.log(`----------------`);
       console.log(`KillerPalesTine`);
         console.log(`----------------`);
-      console.log(`ON ${client.guilds.size} Servers '     Script By : EX Clan ' `);
+      console.log(`ON ${client.guilds.size} Servers '     Script By : ArabGames ' `);
     console.log(`----------------`);
   console.log(`Logged in as ${client.user.tag}!`);
 client.user.setGame(`%help | ArabGames`,"http://twitch.tv/Death Shop")
@@ -433,10 +433,6 @@ client.on('message', message => { //RayGamerMC BotInfo Code
 
 
 
-const prefix = "%"; //NotMiro //BadGuY
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
-});
 
 client.on('message', message => {
   let command = message.content.split(" ")[0].slice(prefix.length);
