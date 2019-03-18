@@ -568,7 +568,7 @@ ${shop}
 });
 
 
-const bot = require('discord.js-musicbot-addon');//Elmusaui_GK + Narox
+
 bot.start(client, {//Elmusaui_GK + Narox
  youtubeKey: "AIzaSyAdORXg7UZUo7sePv97JyoDqtQVi3Ll0b8", //Elmusaui_GK + Narox
  musichelp : "m%help", //Elmusaui_GK + Narox
