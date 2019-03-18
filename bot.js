@@ -458,7 +458,7 @@ client.on('message', message => {
 
 client.on('message', message => {
     if (message.author.bot) return;
-     if (message.content ==="#help") {
+     if (message.content ==="%help") {
          message.channel.send('**تم ارسالك في الخاص**');
             
     
@@ -475,6 +475,7 @@ client.on('message', message => {
 %bot  //معلومات عن البوت
 %sugg //لارسال اقتراح يلزم روم suggestions
 %member  //معرفة حالة الاعضاء
+قريباا
 
 **
 `);
