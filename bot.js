@@ -335,7 +335,7 @@ client.on('message', message => { //RayGamerMC MuteChannel Code
         if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط ل السيرفرات**').then(m => m.delete(5000));
       if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**`ADMINISTRATOR`أنت لا تملك خاصية **' );
         let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
-        let copy = "ITZ Bot";
+        let copy = "ArabGames Bot";
         let request = `Requested By ${message.author.username}`;
         if (!args) return message.reply('**اكتب رسالة البرودكاست**');message.channel.send(`**هل أنت متأكد من ارسال البرودكاست؟ \nالبرودكاست: ** \` ${args}\``).then(msg => { //Snow Codes
         msg.react('✅')
