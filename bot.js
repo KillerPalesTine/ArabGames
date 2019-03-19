@@ -626,7 +626,7 @@ hours = 12;//Narox
 }
  
   var filter = m => m.author.id === message.author.id;//Narox
-  if(message.content.startsWith(% + "giveaway")) {
+  if(message.content.startsWith(prefix + "giveaway")) {
  
     if(!message.guild.member(message.author).hasPermission('MANAGE_GUILD')) return message.channel.send(':heavy_multiplication_x:| **يجب أن يكون لديك خاصية التعديل على السيرفر**');
     message.channel.send(`:eight_pointed_black_star:| **Send Name channel For the Giveaway**`).then(msg => {
