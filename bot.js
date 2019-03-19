@@ -12,6 +12,7 @@ client.on('ready', () => {
     console.log(`----------------`);
   console.log(`Logged in as ${client.user.tag}!`);
 client.user.setGame(`%help | ArabGames`,"http://twitch.tv/Death Shop")
+client.user.setGame(`%inv to invite the bot | ArabGames`,"http://twitch.tv/Death Shop")
 client.user.setStatus("online")
 });
  
