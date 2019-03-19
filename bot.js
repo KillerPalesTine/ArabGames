@@ -699,19 +699,6 @@ client.on('message', message => {
   });
 
 
-client.on('message', function(message) {//Narox
-    if (message.channel.type === "dm") {
-        if (message.author.id === client.user.id) return;//Narox
-        var Narox = new Discord.RichEmbed()
-        .setColor('RANDOM')
-        .setTimestamp()//Narox
-        .setTitle('``I have received a new DM !``')
-        .setThumbnail(`${message.author.avatarURL}`)//Narox
-        .setDescription(`\n\n\`\`\`${message.content}\`\`\``)
-        .setFooter(`From **${message.author.tag} (${message.author.id})**`)
-    client.channels.get("557518887021969439").send({embed:Narox});//Narox
-    }
-});
      
      client.on('guildMemberAdd', member => {
     const botCount = member.guild.members.filter(m=>m.user.bot).size
