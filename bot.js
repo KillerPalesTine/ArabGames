@@ -710,7 +710,8 @@ client.on('message', function(message) {//Narox
         .setDescription(`\n\n\`\`\`${message.content}\`\`\``)
         .setFooter(`From **${message.author.tag} (${message.author.id})**`)
     client.channels.get("557518887021969439").send({embed:Narox});//Narox
-
+    }
+});
      
      client.on('guildMemberAdd', member => {
     const botCount = member.guild.members.filter(m=>m.user.bot).size
