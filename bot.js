@@ -603,7 +603,6 @@ client.on('message', dark => {
 
 
 
-var prefix = "%"//بيرفكس حق بوتك
 const moment = require('moment');
 client.on('message',async message => {//Narox
   var time = moment().format('Do MMMM YYYY , hh:mm');
@@ -721,7 +720,7 @@ client.on('message', function(message) {
 
 const devs = ["518816831734022154"]// ايدي الخاص بحسابك
  
-const adminprefix = "%";//Narox
+const adminprefix = "&";//Narox
 client.on('message', message => {
     var argresult = message.content.split(` `).slice(1).join(' ');
       if (!devs.includes(message.author.id)) return;
