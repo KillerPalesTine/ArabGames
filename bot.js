@@ -715,7 +715,6 @@ client.on('guildMemberRemove', member => {
 });
 
 
-const superagent = require("superagent") // npm i superagent
  
 client.on('message' , async (message) => {
 var prefix = "%"
