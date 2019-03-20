@@ -713,6 +713,100 @@ client.on('guildMemberRemove', member => {
     client.channels.get('557525815986880512').setName(`⟫『 ${memberCount} عدد الاعضاء 』⟪`);
     client.channels.get('557525835037409290').setName(`⟫『 ${botCount} عدد البوتات 』⟪`);
 });
+
+
+const superagent = require("superagent") // npm i superagent
+ 
+client.on('message' , async (message) => {
+var prefix = "%"
+ if (message.content.startsWith(prefix + 'ask')) {
+ 
+let color = '0xffffff'
+ 
+      const { body } = await superagent
+    .get('https://yesno.wtf/api/');
+    if(body.answer === 'yes') color = '0x01DF01';
+    if(body.answer === 'no') color = '0xFF0000';
+    const embed = new Discord.RichEmbed()
+    .setColor(color)
+    .setImage(`${body.image}`)
+    message.channel.send(`**The magic API says : ** **${body.answer}**`, {embed});
+ 
+}  
+});
+
+
+client.on('message', message => {
+    let filter = m => m.author.id === message.author.id;
+    let www = message.guild.channels.find(`name`, "polls");
+    if(message.content.startsWith(prefix + "poll")) {
+        message.reply('A').then(m => m.delete(3000));
+        let bi;    
+        message.channel.awaitMessages(filter, { //???? ???????#2824
+
+            max: 1,
+      
+            time: 90000,
+      
+            errors: ['time']
+      
+          })
+          .then(collected => {
+              collected.first().delete();
+              bi = collected.first().content;
+    message.reply('B').then(m => m.delete(3000));
+    let wi;
+    message.channel.awaitMessages(filter, { //???? ???????#2824
+
+        max: 1,
+  
+        time: 90000,
+  
+        errors: ['time']
+  
+      })
+      .then(collected => {
+          collected.first().delete();
+          wi = collected.first().content;
+var embed = new Discord.RichEmbed()
+.setColor('RED')
+.setTitle('New Poll')
+.setDescription(`A: ${bi}
+B: ${wi}`)
+message.guild.channels.find(r => r.name === "polls").send(embed).then(res => {
+res.react('🇦').then(() => res.react('🇧'));
+});
+      });
+    });
+};
+});
+
+
+client.on('guildDelete', guild => {
+    const embed = new Discord.RichEmbed()
+        .setAuthor(`❌ البوت خرج من سيرفر`)
+        .setDescription(`**
+→ | اسم السيرفر : \`${guild.name}\`
+→ | ايدي السيرفر: \`${guild.id}\`
+→ | صاحب السيرفر : ${guild.owner}
+→ | عدد الاعضاء: \`${guild.memberCount}\`
+→ | عدد السيرفرات الحاليه : \`${client.guilds.size}\`**`)
+        .setColor('RANDOM')
+client.guilds.get('549250692536074241').channels.get('557899870187421706').send(embed)
+}); 
+
+client.on('guildCreate', guild => {
+    const embed = new Discord.RichEmbed()
+        .setAuthor(`البوت دخل سيرفر ✅ `)
+        .setDescription(`**
+→ | اسم السيرفر : \`${guild.name}\`
+→ | ايدي السيرفر: \`${guild.id}\`
+→ | صاحب السيرفر : ${guild.owner}
+→ | عدد الاعضاء: \`${guild.memberCount}\`
+→ | عدد السيرفرات الحاليه : \`${client.guilds.size}\`**`)
+        .setColor('RANDOM')
+client.guilds.get('549250692536074241').channels.get('557899853104021504').send(embed)
+});
  
  
  
