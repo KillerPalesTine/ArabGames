@@ -588,9 +588,9 @@ client.on('message',async message => {
                   .setDescription(`المدة : ${duration / 60000} دقائق`)
                   .setFooter(message.author.username, message.author.avatarURL);
                   message.guild.channels.find('name', room).send(giveEmbed).then(m => {
-                     let re = m.react('??');
+                     let re = m.react('tada');
                      setTimeout(() => {
-                       let users = m.reactions.get("??").users;
+                       let users = m.reactions.get("tada").users;
                        let list = users.array().filter(u => u.id !== m.author.id);
                        let gFilter = list[Math.floor(Math.random() * list.length) + 0];
                          if(users.size === 1) gFilter = '**لم يتم التحديد**';
