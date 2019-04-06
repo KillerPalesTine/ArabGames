@@ -431,6 +431,7 @@ client.on('message', message => {
 %mute //لعمل ميوت ل الشخص 
 %setLeave //عند خروج عضو البوت يرسل رسالة
 %setWelcome //عند دخول عضو البوت يرسل رسالة
+%dmWelcome //عند دخول شخص يرسل البوت رسالة على الخاص
 **
 `);
 
@@ -1050,7 +1051,7 @@ client.on('message', message => {
        
         client.on('message', message => {
  
-    if(message.content.startsWith(prefix + "toggleDmwelcome")) {
+    if(message.content.startsWith(prefix + "Dmwelcome")) {
         if(!message.channel.guild) return message.reply('**This Command Only For Servers**');
         if(!message.member.hasPermission('MANAGE_GUILD')) return message.channel.send('**Sorry But You Dont Have Permission** `MANAGE_GUILD`' );
         if(!welcome[message.guild.id]) welcome[message.guild.id] = {
@@ -1070,7 +1071,7 @@ client.on('message', message => {
  
         client.on('message', message => {
  
-            if(message.content.startsWith(prefix + "toggleInvitedby")) {
+            if(message.content.startsWith(prefix + "Invitedby")) {
                 if(!message.channel.guild) return message.reply('**This Command Only For Servers**');
                 if(!message.member.hasPermission('MANAGE_GUILD')) return message.channel.send('**Sorry But You Dont Have Permission** `MANAGE_GUILD`' );
                 if(!welcome[message.guild.id]) welcome[message.guild.id] = {
