@@ -427,6 +427,8 @@ client.on('message', message => {
 %gmail //لارسال جيميل وهمي
 %giveaway //لبدء قيف اواي
 %cChannel //لعمل روم كتابي
+%image //لمعرفة صورة السيرفر
+%mute //لعمل ميوت ل الشخص ب الوقت المحدد
 **
 `);
 
@@ -825,6 +827,86 @@ client.on("guildMemberAdd", member => {
 }).catch(console.error)
 })
 
+
+client.on("message", message => { //RayGamerMC Server Image Code
+    const prefix = "%" //البريفكس حقك
+             
+          if(!message.channel.guild) return;
+   if(message.author.bot) return;
+      if(message.content === prefix + "image"){  // "image" يمكنك تغيير اسم الامر من هنا
+          const embed = new Discord.RichEmbed()
+ 
+      .setTitle(`This is  ** ${message.guild.name} **  Photo !`)
+  .setAuthor(message.author.username, message.guild.iconrURL)
+    .setColor(0x164fe3)
+    .setImage(message.guild.iconURL)
+    .setURL(message.guild.iconrURL)
+                    .setTimestamp() //Snow Codes RayGamerMC
+//Snow Codes
+   message.channel.send({embed});
+      }
+  }); //كود اضهار صورة السيرفر
+
+
+client.on('message', message => {
+    let prefix = '%';
+if(message.content.startsWith(prefix + "mute")){
+    let muteduser = message.mentions.members.first();
+    let jif = message.content.split(' ').slice(1);
+    let durration = jif[1];
+    let reason = message.content.split(' ').slice(3).join(' ');
+    let hh;
+    let muted = message.guild.roles.find(r => r.name === 'Muted');
+    if(!muteduser){
+        return message.channel.send('**#- I cannot find this guy**');
+    }
+    if(!message.guild.me.hasPermission('ADMINISTRATOR')){
+        return message.channel.send(`**#- I must have the \`ADMINISTRATOR\` Perms so i can mute people**`);
+    }
+    if(muteduser.hasPermission('ADMINISTRATOR')) {
+        return message.channel.send(`**#- He has a \`ADMINISTRATOR\` Perms and u cannot mute him**`);
+    }
+    if(!message.member.hasPermission('ADMINISTRATOR')){
+        return message.channel.send('**#- You must have \`ADMINISTRATOR\` Perms.**');
+    }
+    if(muteduser.id === message.author.id){
+        return message.channel.send(`**#- You can't mute yourself**`);
+    }
+    if(durration && !durration.match(/[1,10][s,m,h,d,w]/g)){
+        return message.channel.send('**#- Submit a right durration. \n Must be like the following submitation : 1-10 s = second , m = minute , h = hour , d = days, w = weeks**');
+    }
+    if(!muted){
+        return message.guild.createRole({name: 'Muted'});
+    }
+    if(!reason){
+       hh = null;
+    } else {
+        hh = reason;
+    }
+    if(hh === null){
+        hh = "No reason detected";
+    }
+    message.channel.send(`**${muteduser} Got muted :white_check_mark: \n Durration : ${durration}\n Reason : ${hh}**`);
+    console.log(mms(durration));
+    message.guild.channels.filter(m => m.type === 'text').forEach(f => {
+                      f.overwritePermissions(muted, {
+            SEND_MESSAGES: false
+        });
+    });
+    message.guild.channels.filter(s => s.type === 'voice').forEach(h => {
+                      h.overwritePermissions(muted, {
+            SPEAK: false
+        });
+    });
+    muteduser.addRole(muted).then(setTimeout(() => {
+    muteduser.removeRole(muted);
+    message.channel.send(`**${muteduser} Finally got unmuted :white_check_mark:**`);
+}, mms(durration)));
+ 
+   
+ 
+}
+});
 
 
  
