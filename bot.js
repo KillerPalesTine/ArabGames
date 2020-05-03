@@ -12,8 +12,8 @@ client.on('ready', () => {
       console.log(`ON ${client.guilds.size} Servers '     Script By : ArabGames ' `);
     console.log(`----------------`);
   console.log(`Logged in as ${client.user.tag}!`);
-.client.user.setGame(`%help | Dream`,"http://twitch.tv/Death Shop")
-.client.user.setStatus("online")
+client.user.setGame(`%help | Dream`,"http://twitch.tv/Death Shop")
+client.user.setStatus("online")
 });
  
  
