@@ -716,8 +716,8 @@ client.on('message', message => {
 client.on('guildMemberRemove', member => {
     const botCount = member.guild.members.filter(m=>m.user.bot).size
     const memberCount = [member.guild.memberCount] - [botCount]
-    client.channels.get('557525815986880512').setName(`⟫『 ${memberCount} عدد الاعضاء 』⟪`);
-    client.channels.get('557525835037409290').setName(`⟫『 ${botCount} عدد البوتات 』⟪`);
+    client.channels.get('710472072547139634').setName(`⟫『 ${memberCount} عدد الاعضاء 』⟪`);
+    client.channels.get('710472111675801600').setName(`⟫『 ${botCount} عدد البوتات 』⟪`);
 });
 
 
